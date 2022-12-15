@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #222;
+}
+
+
+/*container*/
+
+.container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+
+/* icono */
+
+.container .icono {
+    position: relative;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/* caja de imagen */
+
+.container .icono .imgcaja {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    transition: 0.5s;
+    border: 1px solid #fff;
+    box-shadow: 0 0 0 4px #222, 0 0 0 6px #fff;
+    transform: rotate(calc(360deg/8 * var(--i)));
+    transform-origin: 340px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+
+/* active linea al elegir */
+
+.container .icono .imgcaja.active {
+    box-shadow: 0 0 0 6px #222, 0 0 0 12px #ff1d50;
+}
+
+
+/* img */
+
+.container .icono .imgcaja img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transform: rotate(calc(-360deg/8 * var(--i)));
+    transition: 0.5s;
+    filter: grayscale(1);
+}
+
+
+/* quitar el gris del elegido */
+
+.container .icono .imgcaja.active img {
+    filter: grayscale(0);
+}
+
+
+/* contenido */
+
+.contenido {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido::before {
+    content: '';
+    position: absolute;
+    inset: 60px;
+    border: 4px solid transparent;
+    border-left: 4px solid #21FF00;
+    border-right: 4px solid #0CE9FF;
+    border-radius: 50%;
+    animation: linea_1 5s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+/* animacion linea 1 */
+
+@keyframes linea_1 {
+    0% {
+        rotate: 0deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
+
+.contenido::after {
+    content: '';
+    position: absolute;
+    inset: 120px;
+    border: 4px solid transparent;
+    border-left: 4px solid #E60701;
+    border-right: 4px solid #9000FF;
+    border-radius: 50%;
+    animation: linea_2 2.5s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+/* animacion linea 2 */
+
+@keyframes linea_2 {
+    0% {
+        rotate: 360deg;
+    }
+    100% {
+        rotate: 0deg;
+    }
+}
+
+
+/*contenido*/
+
+.contenidocaja {
+    position: absolute;
+    transform: scale(0);
+    transition: 0.5s;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* active de la caja de contenido */
+
+.contenidocaja.active {
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+
+/* tarjeta */
+
+.contenidocaja .tarjeta {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* img de la caja */
+
+.contenidocaja .tarjeta .imgcaja {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 10%;
+    overflow: hidden;
+}
+
+
+/* iamgenes */
+
+.contenidocaja .tarjeta .imgcaja img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* caja de texto */
+
+.contenidocaja .tarjeta .cajatexto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* h2 texto */
+
+.contenidocaja .tarjeta .cajatexto h2 {
+    position: relative;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+/* span */
+
+.contenidocaja .tarjeta .cajatexto h2 span {
+    font-size: 0.65em;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+
+/* icono de redes */
+
+.contenidocaja .tarjeta .cajatexto .sci {
+    position: relative;
+    display: flex;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+
+/* li */
+
+.contenidocaja .tarjeta .cajatexto .sci li {
+    list-style: none;
+}
+
+
+/* a */
+
+.contenidocaja .tarjeta .cajatexto .sci li a {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+
+/* hover */
+
+.contenidocaja .tarjeta .cajatexto .sci li a:hover {
+    background: #2196f3;
+}
